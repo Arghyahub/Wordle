@@ -1,5 +1,7 @@
 .App {
     height: 100%;
+    margin: 1rem;
+    border: 1px solid grey;
 }
 
 h1 , h4 {
@@ -16,8 +18,28 @@ input {
     font-size: 1.5rem;
 }
 
-button {
+.gen-btn {
     margin-top: 1rem;
     padding: 0.4rem 0.5rem;
+    cursor: pointer;
+}
+
+.warn-text {
+    font-weight: 600;
+}
+
+.link {
+    margin-top : 3rem;
+    position: relative;
+    border: 1px solid rgb(89, 255, 47);
+    padding: 0.5rem 0.9rem;
+    border-radius: 1rem;
+    color: cornflowerblue;
+}
+
+.cpy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
 }
