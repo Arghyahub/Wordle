@@ -1,0 +1,17 @@
+#Game {
+    height: 100%;
+}
+
+.word-wrap {
+    border: 1px solid grey;
+    padding: 1.5rem;
+}
+
+.word-arr {
+    margin: 0.4rem;
+}
+
+.word-chars {
+    padding: 1rem 2rem;
+    border: 1px solid grey;
+}
