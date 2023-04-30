@@ -32,6 +32,7 @@ function App() {
 
     const inputElem = document.getElementsByTagName('input')[0] ;
     let val = inputElem.value ;
+    val = val.toLowerCase() ;
 
     let str = "" ;
     
@@ -49,7 +50,18 @@ function App() {
   }
 
   let copyClip = () => {
-    navigator.clipboard.writeText(LinkTxt) ;
+    // navigator.clipboard.writeText(LinkTxt) ;
+
+    const tempTextArea = document.createElement('textarea') ;
+    const root = document.getElementById('root') ;
+    tempTextArea.value = LinkTxt ;
+
+    root.appendChild(tempTextArea) ;
+
+    tempTextArea.select() ;
+    document.execCommand('copy') ;
+
+    root.removeChild(tempTextArea) ;
   }
 
   return (
@@ -59,9 +71,9 @@ function App() {
       <input type="text" onChange={handleKey} />
       <p className='warn-text' style={{color : Auth? 'green':'red'}} >{WarnText}</p>
       <button className='gen-btn' onClick={generateLink}>Generate Link</button>
-      <div style={{ visibility : (LinkTxt.length!==0)? 'visible':'hidden' }} className="link flex-row">
+      <div style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} className="link flex-row">
         <p>{LinkTxt}</p>
-        <button className='cpy-btn' style={{ visibility : (LinkTxt.length!==0)? 'visible':'hidden' }} onClick={copyClip} >🔗copy</button>
+        <button className='cpy-btn' style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} onClick={copyClip} >🔗copy</button>
       </div>
     </div>
   );
