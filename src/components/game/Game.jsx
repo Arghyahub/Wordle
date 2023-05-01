@@ -11,10 +11,22 @@ let wordMat = [
   ["1","1","1","1","1"],
   ["1","1","1","1","1"]
 ] ;
+
+let colorMat = [
+  ["white","white","white","white","white"],
+  ["white","white","white","white","white"],
+  ["white","white","white","white","white"],
+  ["white","white","white","white","white"],
+  ["white","white","white","white","white"],
+  ["white","white","white","white","white"]
+] ;
+
 let rowCount = 0;
 
 const Game = () => {
   const [Matrix, setMatrix] = useState([...wordMat]) ;
+  const [BgColor, setBgColor] = useState([...colorMat]) ;
+  const [Terminate, setTerminate] = useState(0) ;
   const inputRef = useRef(null);
 
   let { game } = useParams() ;
@@ -26,15 +38,23 @@ const Game = () => {
 
   let insertRow = () => {
     wordMat = Matrix ;
+    colorMat = BgColor ;
     let inputWord = inputRef.current.value ;
-    console.log(rowCount) ;
+    
     for (let j=0; j<5; j++){
       wordMat[rowCount][j] = inputWord[j] ;
+      if (inputWord[j] === word[j]){
+        colorMat[rowCount][j] = 'green' ;
+      }
+      else if (word.indexOf(inputWord[j]) !== -1 ){
+        colorMat[rowCount][j] = 'yellow' ;
+      }
     }
 
     setMatrix([...wordMat]) ;
+    setBgColor([...colorMat]) ;
     rowCount = rowCount + 1;
-    console.log(rowCount) ;
+
 
     // row out of bound problem , Show winner Status left , color change and wordlength check
 
@@ -52,7 +72,7 @@ const Game = () => {
           { Matrix.map((arr,indx) => (
               <div key={indx} className="word-arr flex-row">
                 { arr.map((chars,indy) => (
-                    <div key={indy} className='word-chars'>{chars}</div>
+                    <div style={{ backgroundColor : BgColor[indx][indy] }} key={indy} className='word-chars'>{chars}</div>
                   ))
                 }
               </div>
