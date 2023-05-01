@@ -4,14 +4,26 @@
 
 .word-wrap {
     border: 1px solid grey;
-    padding: 1.5rem;
+    padding: 1rem;
 }
 
 .word-arr {
-    margin: 0.4rem;
+    margin: 0.4rem 0.2rem;
 }
 
 .word-chars {
-    padding: 1rem 2rem;
+    /* padding: 1rem 2rem; */
+    height: 40px;
+    width: 60px;
     border: 1px solid grey;
+    text-transform: uppercase;
+}
+
+.btn {
+    padding: 0.8rem;
+    background-color: rgb(112, 247, 112);
+    padding: 0.2rem;
+    font-size: 1.7rem;
+    margin-left: 5px;
+    cursor: pointer;
 }

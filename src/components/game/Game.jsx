@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom'
 import './Game.css'
 
 let wordMat = [
-  ["1","1","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","1","1","1","1"],
-  ["1","1","1","1","1"]
+  ["","","","",""],
+  ["","","","",""],
+  ["","","","",""],
+  ["","","","",""],
+  ["","","","",""],
+  ["","","","",""]
 ] ;
 
 let colorMat = [
@@ -26,7 +26,6 @@ let rowCount = 0;
 const Game = () => {
   const [Matrix, setMatrix] = useState([...wordMat]) ;
   const [BgColor, setBgColor] = useState([...colorMat]) ;
-  const [Sigmoid, setSigmoid] = useState(0) ;
   const [Para, setPara] = useState([0,"Insert a 5 Letter Word"])
 
 
@@ -50,9 +49,15 @@ const Game = () => {
 
 
   let insertRow = () => {
+    const inputWord = (inputRef.current.value).toLowerCase() ;
+    if (inputWord.length<5){
+      alert("The Word should have 5 letters") ;
+      return;
+    }
+    
     wordMat = Matrix ;
     colorMat = BgColor ;
-    const inputWord = (inputRef.current.value).toLowerCase() ;
+
     let match = 0;
     
     for (let j=0; j<5; j++){
@@ -76,7 +81,6 @@ const Game = () => {
     else if (rowCount===6){
       win(false,`The Correct Word was ${word}`) ;
     }
-    // row out of bound problem , Show winner Status left , color change and wordlength check
   }
 
   return (
@@ -91,7 +95,7 @@ const Game = () => {
           { Matrix.map((arr,indx) => (
               <div key={indx} className="word-arr flex-row">
                 { arr.map((chars,indy) => (
-                    <div style={{ backgroundColor : BgColor[indx][indy] }} key={indy} className='word-chars'>{chars}</div>
+                    <div style={{ backgroundColor : BgColor[indx][indy] }} key={indy} className='word-chars flex-row'>{chars}</div>
                   ))
                 }
               </div>
@@ -104,7 +108,7 @@ const Game = () => {
 
       <div style={{ display: (Para[0]===1 || Para[0]===-1)? 'none':'' }} className="input-box flex-row">
         <input ref={inputRef} type="text" maxLength={5} />
-        <button onClick={insertRow} >⬆️</button>
+        <button onClick={insertRow} className='btn' >⬆️</button>
       </div>
 
     </div>

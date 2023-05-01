@@ -8,10 +8,6 @@ import Game from './components/game/Game'
 
 function App() {
   return (
-    // <div className="App flex-row">
-    //   <Home />
-    // </div>
-
     <BrowserRouter> 
       <Routes>
 
