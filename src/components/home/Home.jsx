@@ -64,17 +64,21 @@ const Home = () => {
     root.removeChild(tempTextArea) ;
   }
   return (
-    <div id="Home" className='flex-row'>
+    <div id="Home" className='height-100 flex-col'>
+      <div className="home-title">
+        <h1>Welcome to Wordle Multiplayer</h1>
+      </div>
 
-      <div className='flex-col home-box'>
-        <h1>Welcome to Wordle multiplayer</h1>
-        <h4>Enter a Word</h4>
-        <input type="text" onChange={handleKey} />
-        <p className='warn-text' style={{color : Auth? 'green':'red'}} >{WarnText}</p>
-        <button className='gen-btn' onClick={generateLink}>Generate Link</button>
-        <div style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} className="link flex-row">
-          <p>{LinkTxt}</p>
-          <button className='cpy-btn' style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} onClick={copyClip} >🔗copy</button>
+      <div className='flex-col home-box height-100'>
+        <div className="gen-box flex-col">
+          <h4>Enter a Word</h4>
+          <input className='home-ip' type="text" onChange={handleKey} />
+          <p className='warn-text text-cen' style={{color : Auth? 'green':'red'}} >{WarnText}</p>
+          <button className='gen-btn' onClick={generateLink}>Generate Link</button>
+          <div style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} className="link flex-row">
+            <p>{LinkTxt}</p>
+            <button className='cpy-btn' style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} onClick={copyClip} >🔗copy</button>
+          </div>
         </div>
       </div>
 
