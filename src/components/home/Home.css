@@ -70,7 +70,8 @@ p {
     border: 1px solid rgb(89, 255, 47);
     padding: 0.5rem 0.9rem;
     border-radius: 1rem;
-    color: cornflowerblue;
+    color: rgb(24, 72, 162);
+    font-family: 'Prompt', sans-serif;
 }
 
 .cpy-btn {
