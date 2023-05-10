@@ -1,5 +1,14 @@
+/* 
+font-family: 'Merriweather', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Prompt', sans-serif;
+font-family: 'Sacramento', cursive; 
+*/
+
 #Home {
     height: 100%;
+    background-color: #146C94;
+    color: #ffff;
 }
 
 .home-box {
@@ -11,6 +20,11 @@
 h1 , h4 {
     font-family: sans-serif;
     text-align: center;
+    font-family: 'Merriweather', serif;
+}
+h4 {
+    font-family: 'Montserrat', sans-serif; 
+    color: rgb(0, 0, 0);
 }
 
 .home-title {
@@ -26,13 +40,16 @@ p {
     border: 1px solid gray;
     padding: 5px 20px;
     border-radius: 1rem;
+    background: #AFD3E2;
+    box-shadow: 0 0 55px #cccccc2a;
 }
 
 .home-ip {
     padding: 0.5rem;
     font-family: sans-serif;
     font-size: 1.5rem;
-    width: calc(100% - 5px);
+    width: calc(100% - 30px);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .gen-btn {
@@ -42,7 +59,9 @@ p {
 }
 
 .warn-text {
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-family: 'Prompt', sans-serif;
 }
 
 .link {
@@ -66,4 +85,11 @@ p {
         padding: 1rem;
         max-width: calc(100% - 2rem);
     }
+}
+
+.auth {
+    color: rgb(46, 155, 19);
+}
+.notauth {
+    color: rgb(245, 0, 0);
 }

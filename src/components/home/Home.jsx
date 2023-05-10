@@ -73,7 +73,7 @@ const Home = () => {
         <div className="gen-box flex-col">
           <h4>Enter a Word</h4>
           <input className='home-ip' type="text" onChange={handleKey} />
-          <p className='warn-text text-cen' style={{color : Auth? 'green':'red'}} >{WarnText}</p>
+          <p className={ Auth? 'warn-text auth' : 'warn-text notauth'}  >{WarnText}</p>
           <button className='gen-btn' onClick={generateLink}>Generate Link</button>
           <div style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} className="link flex-row">
             <p>{LinkTxt}</p>
