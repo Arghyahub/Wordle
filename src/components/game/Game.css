@@ -1,20 +1,25 @@
 #Game {
     height: 100%;
+    background-color: #AFD3E2;
 }
 
 .word-wrap {
-    border: 1px solid grey;
     padding: 1rem;
+    background-color: rgb(62, 62, 62);
+    border-radius: 5px;
 }
 
 .word-arr {
     margin: 0.4rem 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .word-chars {
     /* padding: 1rem 2rem; */
     height: 40px;
-    width: 60px;
+    width: 55px;
     border: 1px solid grey;
     text-transform: uppercase;
 }
@@ -26,4 +31,10 @@
     font-size: 1.7rem;
     margin-left: 5px;
     cursor: pointer;
+}
+
+.game-ip {
+    height: 40px;
+    width: 220px;
+    max-width: 80%;
 }

@@ -83,6 +83,13 @@ const Game = () => {
     }
   }
 
+  const fixlen = (e) => {
+    e.preventDefault() ;
+    const ip = e.target ;
+    if (ip.value.length > 5)
+      ip.value = ip.value.slice(0,5) ;
+  }
+
   return (
     <div id="Game">
       <div className="head flex-row">
@@ -93,7 +100,7 @@ const Game = () => {
       <div className="game-box flex-col">
         <div className="word-wrap flex-col">
           { Matrix.map((arr,indx) => (
-              <div key={indx} className="word-arr flex-row">
+              <div key={indx} className="word-arr">
                 { arr.map((chars,indy) => (
                     <div style={{ backgroundColor : BgColor[indx][indy] }} key={indy} className='word-chars flex-row'>{chars}</div>
                   ))
@@ -107,7 +114,7 @@ const Game = () => {
       <h4 style={{ color : (Para[0]===1)? 'green':'red' }} className="para">{Para[1]}</h4>
 
       <div style={{ display: (Para[0]===1 || Para[0]===-1)? 'none':'' }} className="input-box flex-row">
-        <input ref={inputRef} type="text" maxLength={5} />
+        <input className='game-ip' ref={inputRef} type="text" onInput={fixlen}maxLength={5}  />
         <button onClick={insertRow} className='btn' >⬆️</button>
       </div>
 
