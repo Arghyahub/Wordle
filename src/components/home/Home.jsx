@@ -79,6 +79,7 @@ const Home = () => {
             <p>{LinkTxt}</p>
             <button className='cpy-btn' style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} onClick={copyClip} >🔗copy</button>
           </div>
+          <p style={{ visibility : (Auth && LinkTxt.length!==0)? 'visible':'hidden' }} className='share'>Share With friends🥳</p>
         </div>
       </div>
 

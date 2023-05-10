@@ -93,3 +93,8 @@ p {
 .notauth {
     color: rgb(245, 0, 0);
 }
+
+.share {
+    color: black;
+    font-family: 'Prompt', sans-serif;
+}
