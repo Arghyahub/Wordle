@@ -47,39 +47,66 @@ const Game = () => {
     }
   }
 
+  const checkWord = async (str) => {
+    try {
+      const api = `https://api.dictionaryapi.dev/api/v2/entries/en/${str}`;
+      const response = await fetch(api);
+      console.clear() ;
 
-  let insertRow = () => {
-    const inputWord = (inputRef.current.value).toLowerCase() ;
-    if (inputWord.length<5){
-      alert("The Word should have 5 letters") ;
-      return;
-    }
-    
-    wordMat = Matrix ;
-    colorMat = BgColor ;
-
-    let match = 0;
-    
-    for (let j=0; j<5; j++){
-      wordMat[rowCount][j] = inputWord[j] ;
-      if (inputWord[j] === word[j]){
-        colorMat[rowCount][j] = 'green' ;
-        match++ ;
+      if (response.status === 404) {
+        return false;
       }
-      else if (word.indexOf(inputWord[j]) !== -1 ){
-        colorMat[rowCount][j] = 'yellow' ;
+      
+      return true;
+    } catch (err) {
+      return false;
+    }
+  };
+
+
+  let insertRow = async () => {
+    try{
+      const inputWord = (inputRef.current.value).toLowerCase() ;
+      if (inputWord.length<5){
+        alert("The Word should have 5 letters") ;
+        return;
+      }
+    
+      const wordExist = await checkWord(inputWord) ;
+      if (wordExist === false){
+        setPara([0,"Not a Valid Word"]) ;
+        return;
+      }
+      
+      wordMat = Matrix ;
+      colorMat = BgColor ;
+    
+      let match = 0;
+      
+      for (let j=0; j<5; j++){
+        wordMat[rowCount][j] = inputWord[j] ;
+        if (inputWord[j] === word[j]){
+          colorMat[rowCount][j] = 'green' ;
+          match++ ;
+        }
+        else if (word.indexOf(inputWord[j]) !== -1 ){
+          colorMat[rowCount][j] = 'yellow' ;
+        }
+      }
+    
+      setMatrix([...wordMat]) ;
+      setBgColor([...colorMat]) ;
+      rowCount = rowCount + 1;
+    
+      if (match===5){
+        win(true,'You won') ;
+      }
+      else if (rowCount===6){
+        win(false,`The Correct Word was ${word}`) ;
       }
     }
-
-    setMatrix([...wordMat]) ;
-    setBgColor([...colorMat]) ;
-    rowCount = rowCount + 1;
-
-    if (match===5){
-      win(true,'You won') ;
-    }
-    else if (rowCount===6){
-      win(false,`The Correct Word was ${word}`) ;
+    catch(err) {
+      console.log(err) ;
     }
   }
 

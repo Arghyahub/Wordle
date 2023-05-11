@@ -7,6 +7,22 @@ const Home = () => {
   const [LinkTxt, setLinkTxt] = useState("") ;
   const [Auth, setAuth] = useState(false) ;
 
+  const checkWord = async (str) => {
+    try {
+      const api = `https://api.dictionaryapi.dev/api/v2/entries/en/${str}`;
+      const response = await fetch(api);
+      console.clear() ;
+
+      if (response.status === 404) {
+        return false;
+      }
+      
+      return true;
+    } catch (err) {
+      return false;
+    }
+  };
+
   let handleKey = (event) => {
     const str = (event.target.value) ;
     if (str.length < 5){
@@ -23,30 +39,40 @@ const Home = () => {
     }
   }
 
-  let generateLink = () => {
-    if (Auth === false){
-      setWarnText("The Word should have 5 letters") ;
-      setLinkTxt("") ;
-      return;
-    }
-
-    const inputElem = document.getElementsByTagName('input')[0] ;
-    let val = inputElem.value ;
-    val = val.toLowerCase() ;
-
-    let str = "" ;
-    
-    for (let i=0; i<val.length; i++){
-      let charAscii = val.charCodeAt(i) - 97 ;
-      if (charAscii <= 9 ) {
-        str+=`0${charAscii}` ;
+  const generateLink = async () => {
+    try {
+      if (Auth === false){
+        setWarnText("The Word should have 5 letters") ;
+        setLinkTxt("") ;
+        return;
       }
-      else{
-        str+=`${charAscii}` ;
-      }
-    }
 
-    setLinkTxt(`${window.location.href}${str}`) ;
+      const inputElem = document.getElementsByTagName('input')[0] ;
+      const val = inputElem.value.toLowerCase() ;
+
+      const wordResponse = await checkWord(val) ;
+      if (wordResponse === false){
+        setWarnText("Not a valid English Word") ;
+        return;
+      }
+
+      let str = "" ;
+      
+      for (let i=0; i<val.length; i++){
+        let charAscii = val.charCodeAt(i) - 97 ;
+        if (charAscii <= 9 ) {
+          str+=`0${charAscii}` ;
+        }
+        else{
+          str+=`${charAscii}` ;
+        }
+      }
+
+      setLinkTxt(`${window.location.href}${str}`) ;
+    }
+    catch(err){
+      // console.log("idk why" + err) ;
+    }
   }
 
   let copyClip = () => {
